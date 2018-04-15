@@ -16,8 +16,7 @@
 
 	<!-- 启用注解扫描，并定义组件查找规则 ，mvc层只负责扫描@Controller、@ControllerAdvice -->
 	<!-- base-package 如果多个，用“,”分隔 -->
-	<context:component-scan base-package="cn.edu.tju.rico"
-		use-default-filters="false">
+	<context:component-scan base-package="cn.edu.tju.rico" use-default-filters="false">
 		<!-- 扫描@Controller -->
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
@@ -41,8 +40,7 @@
 
 
 	<!-- 视图解析器 -->
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- 前缀 -->
 		<property name="prefix">
 			<value>/WEB-INF/content/</value>
