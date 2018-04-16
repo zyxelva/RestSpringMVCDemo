@@ -7,6 +7,13 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>RestSpringMVCDemo Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>4.3.4.RELEASE</spring.version>
+		<aspectj.version>1.8.10</aspectj.version>
+		<jackson.version>2.1.4</jackson.version>
+		<hbase.version>1.2.3</hbase.version>
+	</properties>
 	<dependencies>
 		<!-- Servlet API -->
 		<dependency>
@@ -26,18 +33,18 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.0.4.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<!-- aspectj AOP -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>1.8.10</version>
+			<version>${aspectj.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.8.10</version>
+			<version>${aspectj.version}</version>
 		</dependency>
 		<!-- Mybatis -->
 		<dependency>
@@ -55,7 +62,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>4.0.4.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<!-- DataSource 数据源 -->
 		<dependency>
@@ -84,7 +91,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>4.0.4.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<!-- JSON: jackson -->
@@ -128,7 +135,7 @@
 				<version>2.2</version>
 				<configuration>
 					<!-- 注意此处的url,修改成tomcat监听的端口即可 -->
-					<url>http://localhost:8081/manager/text</url>
+					<url>http://localhost:8881/manager/text</url>
 					<server>tomcat7</server> <!-- 此处的名字必须和setting.xml中配置的ID一致 -->
 					<username>admin</username>
 					<password>admin</password>
@@ -146,6 +153,31 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<!-- 自动化部署配置 -->
+			<plugin>
+              <groupId>org.codehaus.cargo</groupId>
+              <artifactId>cargo-maven2-plugin</artifactId>
+  			  <version>1.2.3</version>
+  			  <configuration>
+  			      <container>
+  			          <containerId>tomcat7x</containerId>
+  			          <home>/Users/zyxelva/Documents/apache-tomcat-8.5.30</home>
+  			      </container>
+  			      <configuration>
+  			          <type>existing</type>
+  			          <home>/Users/zyxelva/Documents/apache-tomcat-8.5.30</home>
+  			      </configuration>
+  			  </configuration>
+  			  <executions>  
+                  <execution>  
+                      <id>cargo-run</id>  
+                      <phase>install</phase>  
+                      <goals>  
+                          <goal>run</goal>  
+                      </goals>  
+                  </execution>  
+              </executions>
+          </plugin>
 		</plugins>
 	</build>
 </project>

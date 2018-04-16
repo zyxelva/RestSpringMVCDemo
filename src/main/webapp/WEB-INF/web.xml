@@ -49,7 +49,7 @@
 	</filter-mapping>
 
 	<!-- 通过CORS技术实现AJAX跨域访问 -->
-	<filter>
+	<!-- <filter>
 		<filter-name>corsFilter</filter-name>
 		<filter-class>cn.edu.tju.rico.filter.CorsFilter</filter-class>
 		<init-param>
@@ -72,5 +72,5 @@
 	<filter-mapping>
 		<filter-name>corsFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 </web-app>

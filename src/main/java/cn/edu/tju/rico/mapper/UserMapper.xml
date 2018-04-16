@@ -8,7 +8,7 @@
  -->
 <mapper namespace="cn.edu.tju.rico.mapper.UserMapper">
 	
-	<insert id="save" parameterType="User">
+	<insert id="saveUser" parameterType="User">
 		insert into sys_user(username,user_group) values(#{userName},#{userGroup})
 	</insert>
 	

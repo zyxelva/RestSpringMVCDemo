@@ -13,7 +13,10 @@
         http://www.springframework.org/schema/aop 
         http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
-
+	<!-- 会自动注册RequestMappingHandlerMapping与RequestMappingHandlerAdapter两个Bean， 
+		这是SpringMVC为@Controllers分发请求所必需的，并提供了数据绑定支持、@NumberFormatannotation支持、 @DateTimeFormat支持、@Valid支持、读写XML的支持和读写JSON的支持等功能。 -->
+	<mvc:annotation-driven/>
+	
 	<!-- 启用注解扫描，并定义组件查找规则 ，mvc层只负责扫描@Controller、@ControllerAdvice -->
 	<!-- base-package 如果多个，用“,”分隔 -->
 	<context:component-scan base-package="cn.edu.tju.rico" use-default-filters="false">
@@ -28,11 +31,6 @@
 
 	<!-- 支持Controller的AOP代理 -->
 	<aop:aspectj-autoproxy />
-
-
-	<!-- 会自动注册RequestMappingHandlerMapping与RequestMappingHandlerAdapter两个Bean， 
-		这是SpringMVC为@Controllers分发请求所必需的，并提供了数据绑定支持、@NumberFormatannotation支持、 @DateTimeFormat支持、@Valid支持、读写XML的支持和读写JSON的支持等功能。 -->
-	<mvc:annotation-driven />
 
 
 	<!-- 使用默认的Servlet来响应静态文件 -->
