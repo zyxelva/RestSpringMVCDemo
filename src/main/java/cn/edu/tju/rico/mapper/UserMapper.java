@@ -1,5 +1,7 @@
 package cn.edu.tju.rico.mapper;
 
+import java.util.List;
+
 import cn.edu.tju.rico.model.entity.User;
 
 
@@ -50,5 +52,13 @@ public interface UserMapper {
 	 * @created 2017年6月12日 下午12:19:40
 	 * @return
 	 */
-	public User findUserById(int id);
+	public User findUserById(Integer id);
+
+	/**
+	 * @description 查询所有用户
+	 * @author rico
+	 * @created 2017年6月12日 下午12:19:40
+	 * @return
+	 */
+	public List<User> findAll();
 }

@@ -1,5 +1,7 @@
 package cn.edu.tju.rico.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
@@ -10,13 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.edu.tju.rico.annotation.IgnoreSecurity;
 import cn.edu.tju.rico.model.entity.User;
 import cn.edu.tju.rico.service.UserService;
 
+
+
+
 /**
- * Title: 用户管理 
+ * Title: 用户管理
  * Description: 对用户资源的增删改查
- * 
+ *
  * @author rico
  * @created 2017年7月4日 下午4:54:32
  */
@@ -27,7 +33,7 @@ public class UserController {
 	private UserService userService;
 	/** Log4j日志处理(@author: rico) */
 	private static final Logger log = Logger.getLogger(UserController.class);
-	
+
 	public UserService getUserService() {
 		return userService;
 	}
@@ -44,11 +50,20 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
+	@IgnoreSecurity
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = "application/json")
 	public User getUser(@PathVariable("id") int id) {
 		User user = (User) userService.getUser(id);
 		log.debug("查询用户 :" + user);
 		return user;
+	}
+
+	@IgnoreSecurity
+	@RequestMapping(value = "/user", method = RequestMethod.GET, produces = "application/json")
+	public List<User> getUser() {
+		List<User> userList = userService.getAllUser();
+		log.debug("+++++++++++++++++++++查询 所有 用户+++++++++++++++++++++++++");
+		return userList;
 	}
 
 	/**
@@ -58,7 +73,7 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/user", method = RequestMethod.PUT, produces = "application/json", 
+	@RequestMapping(value = "/user", method = RequestMethod.PUT, produces = "application/json",
 			consumes = "application/json")
 	public User addUser(@RequestBody @Valid User user) {
 		userService.addUser(user);

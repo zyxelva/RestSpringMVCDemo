@@ -1,5 +1,7 @@
 package cn.edu.tju.rico.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
@@ -37,6 +39,7 @@ public class UserServiceImpl implements UserService {
 	 * @see cn.edu.tju.rico.service.UserService#login(java.lang.String,
 	 *      java.lang.String)
 	 */
+	@Override
 	@Transactional(readOnly = false)   //必须设置为false,因为此处切入了日志的保存逻辑
 	public boolean login(String uname, String passwd) {
 		// TODO Auto-generated method stub
@@ -53,6 +56,7 @@ public class UserServiceImpl implements UserService {
 	 * @see cn.edu.tju.rico.service.UserService#getUser(int)
 	 */
 
+	@Override
 	@Transactional(readOnly = false)   //必须设置为false,因为此处切入了日志的保存逻辑
 	public Object getUser(int id) {
 		// TODO Auto-generated method stub
@@ -63,5 +67,11 @@ public class UserServiceImpl implements UserService {
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
 		userMapper.saveUser(user);
+	}
+
+	@Override
+	public List<User> getAllUser()
+	{
+		return userMapper.findAll();
 	}
 }
