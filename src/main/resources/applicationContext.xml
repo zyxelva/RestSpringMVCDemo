@@ -77,7 +77,7 @@
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="cn.edu.tju.rico.mapper"></property>
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		<!-- <property name="sqlSessionFactory" ref="sqlSessionFactory"></property> -->
 	</bean>
 
 	<!-- 事务配置 -->
