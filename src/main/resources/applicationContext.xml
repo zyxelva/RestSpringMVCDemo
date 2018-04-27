@@ -124,6 +124,17 @@
 		<constructor-arg name="port" value="${redis.port}" />
 	</bean>
 
+	<bean id="redisClient" class="cn.edu.tju.rico.redis.RedisClient">  
+            <property name="pool" ref="jedisPool"/>  
+    </bean> 
+    
+    <!-- storge Cache 存储器-->  
+    <bean id="storageCache" class="cn.edu.tju.rico.redis.service.impl.RedisCacheStorageImpl">  
+        <property name="redisClient" ref="redisClient" />
+    </bean>
+    <bean id="userServiceImpl" class="cn.edu.zyx.service.UserServiceImpl">  
+        <property name="storageCache" ref="storageCache"/>
+    </bean>
 	<!-- <bean id="securityAspect" class="cn.edu.tju.rico.aspect.SecurityAspect"> 
 		<property name="tokenManager" ref="tokenManager" /> <property name="tokenName" 
 		value="X-Token" /> </bean> -->
