@@ -10,7 +10,7 @@ import java.util.Map;
  * @param <V>
  *            value
  */
-public interface RedisCacheStorage<K, V>
+public interface IRedisCacheStorage<K, V>
 {
 	/**
 	 * 在redis数据库中插入 key 和value
@@ -76,4 +76,12 @@ public interface RedisCacheStorage<K, V>
 	 * @return
 	 */
 	Map<K, V> hget(String cacheKey);
+
+	Object getObject(String key);
+
+	boolean setObject(String key, Object value);
+
+	String setObject(String key, Object value, int expiretime);
+
+	Long delKeyObject(String key);
 }
