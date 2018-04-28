@@ -9,7 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import com.alibaba.fastjson.JSONObject;
 
 import cn.edu.tju.rico.redis.RedisClient;
-import cn.edu.tju.rico.redis.service.RedisCacheStorage;
+import cn.edu.tju.rico.redis.service.IRedisCacheStorage;
 import cn.edu.tju.rico.utils.SerializeUtil;
 import cn.edu.tju.rico.utils.StringUtil;
 import redis.clients.jedis.Jedis;
@@ -22,7 +22,7 @@ import redis.clients.jedis.exceptions.JedisException;
  *
  * @param <V>
  */
-public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String, V>
+public class RedisCacheStorageImpl<V> implements IRedisCacheStorage<String, V>
 {
 	/**
 	 * 日志记录
@@ -367,6 +367,7 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String, V>
 	 * @param key
 	 * @return
 	 */
+	@Override
 	public Object getObject(String key)
 	{
 		Jedis jedis = null;
@@ -398,6 +399,7 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String, V>
 	 * @param expiretime
 	 * @return
 	 */
+	@Override
 	@SuppressWarnings("finally")
 	public boolean setObject(String key, Object value)
 	{
@@ -431,6 +433,7 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String, V>
 		}
 	}
 
+	@Override
 	public String setObject(String key, Object value, int expiretime)
 	{
 		String result = "";
@@ -462,7 +465,8 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String, V>
 	/**
 	 * 删除key
 	 */
-	public Long delkeyObject(String key)
+	@Override
+	public Long delKeyObject(String key)
 	{
 		Jedis jedis = null;
 		try
